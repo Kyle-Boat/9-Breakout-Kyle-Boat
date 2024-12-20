@@ -1,7 +1,7 @@
 import pygame
 from pygame.math import Vector2
 import math
-import Screen
+
 
 class PhysicsObject:
     def __init__(self, mass = 1, pos =(0,0), vel =(0,0), momi = 0):
