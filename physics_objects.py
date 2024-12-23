@@ -52,27 +52,50 @@ class Ball(PhysicsObject):
         self.radius = radius
         self.screen = screen
         self.color = pygame.Color("grey")
-        self.x_speed = x_speed
-        self.y_speed = y_speed
+        self.velX = x_speed
+        self.velY = y_speed
 
     def move(self):
         pygame.draw.circle(self.screen, self.color, [self.x, self.y], self.radius)
-        self.y -= self.y_speed
-        self.x -= self.x_speed
+        self.y -= self.velY
+        self.x -= self.velX
 
     def bounce_x(self):
-        self.x_speed *= -1
+        self.velX *= -1
 
-    def bounce_y(self):
-        self.y_speed *= -1
+    def bouncey(self):
+        self.velY *= -1
 
-    def check_for_contact_on_x(self):
+    def collisonX(self):
         if self.x - self.radius <= 0 or self.x + self.radius >= self.screen.get_width():
             self.bounce_x()
 
-    def check_for_contact_on_y(self):
+    def collisiony(self):
         if self.y + self.radius <= 0:
-            self.bounce_y()
+            self.bouncey()
+import pygame
+#from Screen import paddle_width, paddle_height
+
+class Paddle:
+   def __init__(self, x, y, width, height, screen_width):
+     self.x = x
+     self.y = y
+     self.width = width
+     self.height = height
+     self.screen_width = screen_width  # Screen width for boundary checking
+     self.rect = pygame.Rect(self.x, self.y, self.width, self.height)
+     self.color = pygame.Color("white")
+    
+   def draw(self, screen):
+       pygame.draw.rect(screen, self.color, self.rect)
+
+   def right(self):
+       if self.rect.x + self.width <= 550:
+           self.rect.x += 8
+
+   def left(self):
+       if self.rect.x >= 0:
+           self.rect.x -= 8
 
 
 class Polygon(PhysicsObject):

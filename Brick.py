@@ -4,10 +4,10 @@ import random
 
 
 class Bricks:
-    def __init__(self, screen, brick_width, brick_height):
+    def __init__(self, screen, width, height):
         self.screen = screen
-        self.brick_width = brick_width
-        self.brick_height = brick_height
+        self.brick_width = width
+        self.brick_height = height
         self.random_colors = ['blue', 'yellow', 'red', 'green', 'orange']
         self.bricks = []
         self.brick_colors = []
@@ -38,7 +38,7 @@ class Bricks:
                 self.bricks.append(brick)
                 self.brick_colors.append(random.choice(self.random_colors))
 
-    def show_bricks(self):
+    def draw_bricks(self):
         for i in range(len(self.bricks)):
             brick = self.bricks[i]
             color = self.brick_colors[i]

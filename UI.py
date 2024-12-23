@@ -20,10 +20,9 @@ class ScoreBoard:
 
 
     def update_score(self, points=1):
-        """Increase the score by a given number of points."""
         self.score += points
 
-    def show_scores(self):
+    def draw_scores(self):
         score_text = self.font.render(f"Score: {self.score}", True, self.color)
         lives_text = self.font.render(f"Lives: {self.lives}", True, self.color)
         high_score_text = self.font.render(f"High Score: {self.highScore}", True, self.color)
@@ -40,7 +39,7 @@ class ScoreBoard:
         self.screen.blit(level_text, (self.x, 58))
 
 
-    def is_game_over(self):
+    def if_game_over(self):
         if self.lives == 0:
             return True
         return False
@@ -53,14 +52,14 @@ class ScoreBoard:
         self.screen.blit(game_over_text, (50, 300))
         self.record_high_score()
 
-    def success(self):
+    def win(self):
         game_success_color = 'green'
         game_success_font = pygame.font.SysFont("calibri", 30)
         game_success_text = game_success_font.render(f"You won! Click 'W' to restart.", True, game_success_color)
         game_success_rect = game_success_text.get_rect(topleft=(50, 300))
         self.screen.blit(game_success_text, (50, 300))
         self.record_high_score()
-        #self.record_high_score()
+        
     
     def set_high_score(self):
         now = datetime.datetime.now()
